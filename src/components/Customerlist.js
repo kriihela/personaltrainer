@@ -4,9 +4,10 @@ import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-material.css'
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import Addcustomer from "./Addcustomer";
 import Editcustomer from "./Editcustomer";
+import Addtraining from "./Addtraining";
+import { Tooltip } from "@mui/material";
 
 export default function Customerlist() {
 
@@ -25,19 +26,27 @@ export default function Customerlist() {
         { field: "firstname", headerName: "FIRST NAME", },
         { field: "lastname", headerName: "LAST NAME" },
         { field: "streetaddress", headerName: "ADDRESS" },
-        { field: "postcode", headerName: "ZIP", width: 120 },
-        { field: "city", headerName: "CITY" },
+        { field: "postcode", headerName: "ZIP", width: 100 },
+        { field: "city", headerName: "CITY", width: 120 },
         { field: "email", headerName: "EMAIL" },
-        { field: "phone", headerName: "PHONE" },
+        { field: "phone", headerName: "PHONE", width: 135 },
         {
-            field: "links.0.href", headerName: "", width: 100,
+            field: "links.0.href", headerName: "", width: 90,
+            cellRendererFramework: params =>
+            <Addtraining link={params.value} training={params.data} saveTraining={saveTraining} />
+        },
+        {
+            field: "links.0.href", headerName: "", width: 90,
             cellRendererFramework: params =>
             <Editcustomer link={params.value} customer={params.data} editCustomer={editCustomer} />
         },
         {
-            field: "links.0.href", headerName: "", width: 100,
+            field: "links.0.href", headerName: "", width: 90,
             cellRendererFramework: params =>
-            <Button variant="outlined" color="error" onClick={() => deleteCustomer(params.value)}><DeleteIcon /></Button>
+            <Tooltip title="Delete customer" placement="top">
+            <Button variant="outlined" color="error" onClick={() => deleteCustomer(params.value)}><DeleteIcon />
+            </Button>
+            </Tooltip>
         }
     ];
     const defaultColDef = useMemo( () => ({
@@ -60,8 +69,8 @@ export default function Customerlist() {
             fetch(link, { method: 'DELETE' })
                 .then(res => fetchCustomers())
                 .catch(err => console.log(err))
-        }
-    }
+        };
+    };
     const editCustomer = (link, customer) => {
         fetch(link, {
             method: 'PUT',
@@ -70,6 +79,15 @@ export default function Customerlist() {
         })
         .then(res => fetchCustomers())
         .catch(err => console.error(err))
+    };
+    const saveTraining = (training) => {
+        fetch('https://customerrest.herokuapp.com/api/trainings/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(training)
+        })
+            .then(res => fetchCustomers())
+            .catch(err => console.error(err))
     };
 
     return (

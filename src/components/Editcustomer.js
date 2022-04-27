@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import EditIcon from '@mui/icons-material/Edit';
+import { Tooltip } from "@mui/material";
 
 export default function Editcustomer(props) {
 
@@ -46,9 +47,11 @@ export default function Editcustomer(props) {
 
     return (
         <div>
+        <Tooltip title="Edit customer" placement="top">
         <Button variant="outlined" onClick={handleClickOpen}>
             <EditIcon />
         </Button>
+        </Tooltip>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Edit customer</DialogTitle>
             <DialogContent>
