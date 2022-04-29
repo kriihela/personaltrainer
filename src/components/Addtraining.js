@@ -7,15 +7,20 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import { Tooltip } from "@mui/material";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
+import Stack from '@mui/material/Stack';
 
 export default function Addtraining(props) {
 
     const [open, setOpen] = useState(false);
+    const [chooseDate, setChooseDate] = useState(new Date(''));
     const [training, setTraining] = useState(
         {
             date: '',
             duration: '',
             activity: '',
+            customer: props.customerId
         }
     );
     const handleClickOpen = () => {
@@ -31,6 +36,10 @@ export default function Addtraining(props) {
         props.saveTraining(training);
         handleClose();
     };
+    const handleDate = (chooseDate) => {
+        setChooseDate(chooseDate.toISOString());
+        setTraining({...training, date: chooseDate});
+    };
 
     return (
         <div>
@@ -41,22 +50,29 @@ export default function Addtraining(props) {
             </Tooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New training</DialogTitle>
+                <br />
                 <DialogContent>
-                    <TextField
-                        autoFocus
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Stack spacing={3}>
+                    <DesktopDatePicker
+                        type="date"
                         margin="dense"
                         name="date"
-                        value={training.date}
-                        onChange={e => handleInputChange(e)}
+                        value={chooseDate}
+                        onChange={handleDate}
                         label="DATE"
+                        //inputFormat="dd/MM/yyyy"
                         fullWidth
-                    />
+                        renderInput={(params) => <TextField {...params} />}
+                        />
+                    </Stack>
+                    </LocalizationProvider>
                     <TextField
                         margin="dense"
                         name="duration"
                         value={training.duration}
                         onChange={e => handleInputChange(e)}
-                        label="DURATION"
+                        label="DURATION (MINUTES)"
                         fullWidth
                     />
                     <TextField

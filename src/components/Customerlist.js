@@ -33,7 +33,7 @@ export default function Customerlist() {
         {
             field: "links.0.href", headerName: "", width: 90,
             cellRendererFramework: params =>
-            <Addtraining link={params.value} training={params.data} saveTraining={saveTraining} />
+            <Addtraining link={params.value} training={params.data} customerId={params.value} saveTraining={saveTraining} />
         },
         {
             field: "links.0.href", headerName: "", width: 90,
