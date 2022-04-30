@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
-import Calendar from './Calendar';
+import Calendar from './components/Calendar';
 
 function App() {
 
