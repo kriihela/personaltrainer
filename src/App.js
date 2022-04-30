@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
+import Calendar from './Calendar';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Tabs value={value} onChange={handleChange}>
         <Tab value='one' label='CUSTOMER' />
         <Tab value='two' label='TRAINING' />
+        <Tab value='three' label='CALENDAR' />
       </Tabs>
 
       {
@@ -33,6 +35,11 @@ function App() {
       {
         value === 'two' && <div>
           <Traininglist />
+        </div>
+      }
+      {
+        value === 'three' && <div>
+          <Calendar />
         </div>
       }
     </div>

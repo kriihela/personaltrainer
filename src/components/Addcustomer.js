@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Addcustomer(props) {
     
@@ -36,14 +37,13 @@ export default function Addcustomer(props) {
 
     return (
         <div>
-        <Button style={{margin: 10}} variant="outlined" size="small" color="success" onClick={handleClickOpen}>
+        <Button style={{margin: 10}} variant="outlined" size="small" color="success" startIcon={<AddIcon />} onClick={handleClickOpen}>
             Add customer
         </Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>New customer</DialogTitle>
             <DialogContent>
                 <TextField
-                    autoFocus
                     margin="dense"
                     name="firstname"
                     value={customer.firstname}

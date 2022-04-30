@@ -8,6 +8,8 @@ import Addcustomer from "./Addcustomer";
 import Editcustomer from "./Editcustomer";
 import Addtraining from "./Addtraining";
 import { Tooltip } from "@mui/material";
+import ExportCSV from "./ExportCSV";
+import { Stack } from "@mui/material";
 
 export default function Customerlist() {
 
@@ -92,7 +94,10 @@ export default function Customerlist() {
 
     return (
         <div className="ag-theme-material" style={{ width: '100', height: '500px', margin: 'auto', textAlign: 'left', }} >
-            <p><Addcustomer saveCustomer={saveCustomer} /></p>
+            <Stack direction="row" spacing={1}>
+            <Addcustomer saveCustomer={saveCustomer} />
+            <ExportCSV />
+            </Stack>
             <AgGridReact
                 pagination="true"
                 paginationPageSize={10}
