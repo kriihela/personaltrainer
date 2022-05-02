@@ -61,7 +61,6 @@ export default function Addtraining(props) {
                         value={chooseDate}
                         onChange={handleDate}
                         label="DATE"
-                        //inputFormat="dd/MM/yyyy"
                         fullWidth
                         renderInput={(params) => <TextField {...params} />}
                         />
