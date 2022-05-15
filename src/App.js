@@ -21,7 +21,6 @@ function App() {
       <div class="header">
         <h1>Personal trainer</h1>
       </div>
-
       <Tabs value={value} onChange={handleChange}>
         <Tab value='one' label='CUSTOMER' />
         <Tab value='two' label='TRAINING' />

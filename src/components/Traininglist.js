@@ -56,7 +56,6 @@ export default function Traininglist() {
                 ref={gridRef}
                 onGridReady={params => gridRef.current = params.api}
                 defaultColDef={defaultColDef}
-                //rowSelection="single"
                 animateRows={true}
                 columnDefs={columns}
                 rowData={trainings} />

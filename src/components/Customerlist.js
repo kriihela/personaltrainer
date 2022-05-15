@@ -104,7 +104,6 @@ export default function Customerlist() {
                 ref={gridRef}
                 onGridReady={params => gridRef.current = params.api}
                 defaultColDef={defaultColDef}
-                //rowSelection="single"
                 animateRows={true}
                 columnDefs={columns}
                 rowData={customers} />
